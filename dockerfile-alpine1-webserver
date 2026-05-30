@@ -1,0 +1,9 @@
+FROM nginx:stable-alpine
+COPY alpine-index1.html /usr/share/nginx/html/index.html
+RUN chmod 644 /usr/share/nginx/html/index.html && chmod 755 /usr/share/nginx/html
+EXPOSE 80
+
+# Start Nginx when the container launches and keep it running in the foreground
+# -g daemon off; tells Nginx to run in the foreground, which is necessary for Docker containers
+# daemon off; prevents Nginx from running as a background process, allowing the container to stay alive
+CMD ["nginx", "-g", "daemon off;"]
